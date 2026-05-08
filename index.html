@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NR's Tech Space</title>
+    <meta name="description" content="Personal blog and portfolio of NR128">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <header class="glass-header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">NR.<span>log</span></a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Posts</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="https://github.com/NR128" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>Building the <span>Future</span></h1>
+            <p>Welcome to my technical space. Exploring AI, Data, and Development.</p>
+        </section>
+
+        <section class="posts-section">
+            <h2 class="section-title">Latest Articles</h2>
+            <div id="posts-container" class="posts-grid">
+                <!-- Posts will be dynamically loaded here by app.js -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 NR128. Built with 💻 and ☕.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

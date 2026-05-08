@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post - NR's Tech Space</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Marked.js for markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <header class="glass-header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">NR.<span>log</span></a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Posts</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="https://github.com/NR128" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 4rem;">
+        <a href="index.html" style="display: inline-block; margin-bottom: 2rem; color: var(--text-secondary);">&larr; Back to all posts</a>
+        <article id="single-post-content" class="post-content">
+            <!-- Content dynamically rendered here -->
+            <div style="text-align: center; color: var(--text-secondary);">Loading...</div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 NR128. Built with 💻 and ☕.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
