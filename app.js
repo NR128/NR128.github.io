@@ -2,6 +2,13 @@
 // When adding a new post, add its metadata here.
 const posts = [
     {
+        id: 'example',
+        title: 'Example Post: The Power of AI in 2026',
+        date: '2026-05-08',
+        excerpt: 'A brand new sample post to demonstrate how easy it is to add content. Learn about Markdown features and AI.',
+        tags: ['example', 'sample', 'ai']
+    },
+    {
         id: 'hello-world',
         title: 'Hello World: My First GitHub Blog Post',
         date: '2026-05-08',
