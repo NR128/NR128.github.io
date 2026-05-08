@@ -1,6 +1,4 @@
-![Instagram Influencer Analysis Dashboard](../assets/instagram_analysis.png)
-
-**링크** : [https://github.com/NR128/project_01_instagram_influencer_analysis.git](https://github.com/NR128/project_01_instagram_influencer_analysis.git)
+[![Instagram Influencer Analysis Dashboard](https://public.tableau.com/static/images/5_/5_6_17781243092660/4_1/1_rss.png)](https://github.com/NR128/project_01_instagram_influencer_analysis.git)
 
 # 개요
 데이터 분석 첫번째 프로젝트

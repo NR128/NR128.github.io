@@ -29,7 +29,7 @@ const portfolioProjects = [
     {
         id: 'project-01-instagram',
         title: 'Instagram Influencer Analysis',
-        image: 'assets/instagram_analysis.png',
+        image: 'https://public.tableau.com/static/images/5_/5_6_17781243092660/4_1/1_rss.png',
         tags: ['Python', 'Pandas', 'Tableau'],
         excerpt: '데이터 분석 첫번째 프로젝트 - 인스타그램 인플루언서 광고 효율 데이터 분석'
     }
