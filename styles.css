@@ -1,13 +1,13 @@
 :root {
     /* Color Palette */
-    --bg-dark: #0f111a;
-    --bg-card: rgba(255, 255, 255, 0.03);
-    --bg-card-hover: rgba(255, 255, 255, 0.08);
-    --text-primary: #ffffff;
-    --text-secondary: #a0a5b8;
-    --accent-primary: #6366f1;
-    --accent-secondary: #ec4899;
-    --border-color: rgba(255, 255, 255, 0.08);
+    --bg-dark: #f0f4f8;
+    --bg-card: rgba(255, 255, 255, 0.7);
+    --bg-card-hover: rgba(255, 255, 255, 0.95);
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --accent-primary: #4f46e5;
+    --accent-secondary: #db2777;
+    --border-color: rgba(0, 0, 0, 0.08);
     
     /* Typography */
     --font-sans: 'Outfit', sans-serif;
@@ -97,7 +97,7 @@ a {
 
 /* Header & Glassmorphism */
 .glass-header {
-    background: rgba(15, 17, 26, 0.7);
+    background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border-color);
@@ -209,8 +209,8 @@ a {
 .portfolio-card:hover {
     transform: translateY(-10px);
     background: var(--bg-card-hover);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
 }
 
 .portfolio-image {
@@ -271,8 +271,8 @@ a {
 .post-card:hover {
     transform: translateY(-10px);
     background: var(--bg-card-hover);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
 }
 
 .post-meta {
@@ -330,7 +330,7 @@ a {
     max-width: 100%;
     border-radius: 12px;
     margin: 2rem 0;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .post-content h2 {
@@ -346,12 +346,12 @@ a {
 }
 
 .post-content pre {
-    background: #000;
+    background: #f8fafc;
     padding: 1.5rem;
     border-radius: 12px;
     overflow-x: auto;
     margin-bottom: 1.5rem;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid var(--border-color);
 }
 
 .post-content code {
