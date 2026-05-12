@@ -19,7 +19,7 @@
 
 # 개발환경
 - **언어**: 파이썬 (Python)
-- **라이브러리**: Pandas, Seaborn, Matplotlib
+- **라이브러리**: Pandas
 - **도구**: Google Colab
 - **데이터 출처**: Kaggle Consumer Shopping Trends 2026
 
