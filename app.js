@@ -2,6 +2,13 @@
 // When adding a new post, add its metadata here.
 const posts = [
     {
+        id: 'consumer-shopping-trends',
+        title: '2026 소비자 쇼핑 트렌드 분석',
+        date: '2026-05-12',
+        excerpt: '연령대별 지출 비중과 소득 수준별 쇼핑 성향 분석을 통한 마케팅 인사이트 도출',
+        tags: ['DataAnalysis', 'ConsumerTrends', 'Python']
+    },
+    {
         id: 'example',
         title: 'Example Post: The Power of AI in 2026',
         date: '2026-05-08',
@@ -26,6 +33,13 @@ const posts = [
 
 // Configuration for portfolio projects
 const portfolioProjects = [
+    {
+        id: 'consumer-shopping-trends',
+        title: 'Consumer Shopping Trends 2026',
+        image: 'assets/consumer_shopping_trends.png',
+        tags: ['Python', 'Seaborn', 'Marketing'],
+        excerpt: '소득 수준별 쇼핑 성향 및 연령대별 온라인 소비 패턴 분석 프로젝트'
+    },
     {
         id: 'project-01-instagram',
         title: 'Instagram Influencer Analysis',
