@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>주식회사 채널코퍼레이션 — Research Note</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500&family=Pretendard+Variable&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0a0a0a;--paper:#fafaf7;--muted:#6b6b66;--line:#1a1a1a;--line-soft:#d8d6cf;--accent:#b8451f;}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:'Pretendard Variable',Georgia,serif;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+.page{max-width:720px;margin:0 auto;padding:64px 32px 120px;}
+.masthead{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:48px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);}
+.masthead .left{font-weight:500;color:var(--ink);}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+h1{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:44px;line-height:1.1;letter-spacing:-0.02em;margin:0 0 20px;}
+.standfirst{font-family:'Fraunces',Georgia,serif;font-size:19px;line-height:1.5;color:var(--muted);margin-bottom:40px;max-width:600px;}
+.byline{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);padding-bottom:32px;margin-bottom:48px;border-bottom:1px solid var(--line-soft);}
+.byline span+span::before{content:" · ";margin:0 4px;}
+.tldr{margin:0 0 56px;padding:24px 28px;border-left:2px solid var(--ink);}
+.tldr-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.tldr p{margin:0 0 8px;font-size:16px;line-height:1.55;}
+.tldr p:last-child{margin-bottom:0;}
+h2{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:26px;letter-spacing:-0.01em;margin:56px 0 20px;padding-top:24px;border-top:1px solid var(--line);}
+h2 .num{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;color:var(--muted);margin-right:12px;vertical-align:4px;}
+p{margin:0 0 16px;}
+.facts{display:grid;grid-template-columns:140px 1fr;gap:4px 32px;margin:32px 0 40px;padding:24px 0;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);font-size:14px;}
+.facts dt{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);padding-top:4px;}
+.facts dd{margin:0;padding-bottom:12px;border-bottom:1px dotted var(--line-soft);}
+.facts dd:last-of-type{border-bottom:none;padding-bottom:0;}
+.competitor-list{margin:0;padding:0;list-style:none;}
+.competitor-list li{padding:20px 0;border-bottom:1px solid var(--line-soft);}
+.competitor-list li:last-child{border-bottom:none;}
+.competitor-list h3{font-family:'Fraunces',Georgia,serif;font-size:18px;font-weight:600;margin:0 0 6px;}
+.competitor-list h3 .url{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);font-weight:400;margin-left:8px;text-decoration:none;}
+.competitor-list .pos{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;margin-bottom:8px;}
+.competitor-list p{font-size:15px;margin:0;}
+table.opportunities{width:100%;border-collapse:collapse;margin:24px 0 40px;font-size:14px;}
+.opportunities th{text-align:left;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);padding:10px 12px 10px 0;border-bottom:1px solid var(--line);}
+.opportunities td{padding:16px 12px 16px 0;border-bottom:1px solid var(--line-soft);vertical-align:top;line-height:1.5;}
+.opportunities td:first-child{font-family:'JetBrains Mono',monospace;color:var(--muted);font-size:12px;width:28px;}
+.priority{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.08em;padding:2px 7px;text-transform:uppercase;border:1px solid var(--ink);}
+.priority.high{background:var(--ink);color:var(--paper);}
+.priority.med{background:transparent;color:var(--ink);}
+.priority.low{background:transparent;color:var(--muted);border-color:var(--line-soft);}
+.next-action{margin:32px 0 48px;padding:28px 32px;background:var(--ink);color:var(--paper);}
+.next-action .label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#999;margin-bottom:10px;}
+.next-action p{font-family:'Fraunces',Georgia,serif;font-size:18px;line-height:1.5;margin:0;}
+.sources{margin-top:56px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);}
+.sources-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);margin-bottom:12px;}
+.sources ol{padding-left:20px;margin:0;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.8;}
+.sources ol a{color:var(--accent);text-decoration:none;word-break:break-all;}
+.colophon{margin-top:80px;padding-top:24px;border-top:1px solid var(--line-soft);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;display:flex;justify-content:space-between;}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="masthead">
+    <div class="left">RESEARCH NOTE / B2B SAAS, 고객 관계 관리(CRM) 및 비즈니스 메신저</div>
+    <div class="right">VOL.299 · 2026-05-21</div>
+  </div>
+  <div class="kicker">company · 1-page brief</div>
+  <h1>주식회사 채널코퍼레이션</h1>
+  <p class="standfirst">채널톡은 단순한 CS 챗봇을 넘어 CRM과 AI 기술을 결합해 고객과 브랜드 간의 실시간 소통 시간을 독점하는 비즈니스 메신저의 표준이다.</p>
+  <div class="byline">
+    <span>Compiled by n8n research workflow</span>
+    <span>3 sources</span>
+    <span>~3 min read</span>
+  </div>
+  <div class="tldr">
+    <div class="tldr-label">TL;DR</div>
+    <p>CS, CRM, 사내 협업을 단일 플랫폼으로 통합하여 기업의 고객 소통 시간을 독점함.</p>
+    <p>AI 에이전트 '알프' 도입으로 단순 반복 문의를 자동화하여 고부가가치 상담에 집중할 수 있는 환경 제공.</p>
+    <p>일본 시장에서의 성공적인 안착을 바탕으로 글로벌 B2B SaaS 시장에서의 영향력을 빠르게 확대 중.</p>
+  </div>
+  <h2><span class="num">01</span>회사 개요</h2>
+  <p>채널톡은 채팅 상담, CRM 마케팅, 사내 메신저를 하나로 통합한 올인원 비즈니스 메신저 솔루션입니다. 온라인 커머스와 스타트업을 중심으로 고객 소통의 효율성을 극대화하며 글로벌 시장으로 확장하고 있습니다.</p>
+  <dl class="facts">
+    <dt>주요 고객</dt><dd>온라인 쇼핑몰(D2C), 스타트업, 중소기업(SMB) 및 고객 관리가 필요한 IT 서비스 기업</dd>
+    <dt>비즈니스 모델</dt><dd>월 구독형 SaaS 모델 (사용자 수 및 활성 사용자 수, 마케팅 기능 사용량에 따른 과금)</dd>
+    <dt>최근 이슈</dt><dd>AI 에이전트 '알프(ALF)' 출시를 통한 CS 단순 문의 자동화율 극대화 및 글로벌 시장 공략 가속화</dd>
+  </dl>
+  <h2><span class="num">02</span>경쟁 지형</h2>
+  <p>채널톡의 경쟁자는 단순한 CS 툴이 아니라, 기업 담당자가 고객 관리를 위해 화면을 켜두고 업무 시간을 소비하게 만드는 플랫폼들입니다.</p>
+  <ol class="competitor-list">
+    <li>
+        <h3>Slack <a href="https://slack.com" class="url">↗ slack.com</a></h3>
+        <div class="pos">포지셔닝 — 협업 툴 / 사내 소통 플랫폼</div>
+        <p>강력한 서드파티 연동과 개발자 친화적 생태계로 사내 협업 허브 역할을 독점하나, 외부 고객과의 직접적인 CRM 연동 및 실시간 채팅 상담 기능은 제한적입니다.</p>
+      </li>
+<li>
+        <h3>KakaoTalk Business <a href="https://business.kakao.com" class="url">↗ business.kakao.com</a></h3>
+        <div class="pos">포지셔닝 — 국민 메신저 / 마케팅 채널</div>
+        <p>압도적인 사용자 도달률과 알림톡 기반의 마케팅 채널을 보유하고 있으나, 고도화된 타겟팅 CRM 마케팅 및 사내 협업 기능과의 유기적 통합은 부족합니다.</p>
+      </li>
+<li>
+        <h3>Cafe24 <a href="https://www.cafe24.com" class="url">↗ www.cafe24.com</a></h3>
+        <div class="pos">포지셔닝 — 이커머스 플랫폼 / 쇼핑몰 빌더</div>
+        <p>쇼핑몰 구축부터 운영 전반의 인프라를 제공하여 운영자의 가장 많은 시간을 점유하지만, 실시간 고객 소통 및 개인화된 CRM 마케팅 시나리오를 정교하게 실행하는 데는 한계가 있습니다.</p>
+      </li>
+  </ol>
+  <h2><span class="num">03</span>자동화 기회</h2>
+  <p>채널톡 내에서 발생하는 방대한 고객 상담 데이터와 반복적인 운영 업무를 LLM 기반으로 자동화하여 운영 효율성을 극대화할 수 있습니다.</p>
+  <table class="opportunities">
+    <thead><tr><th>#</th><th>영역</th><th>현재 반복 업무</th><th>자동화 가설</th><th>기대 효과</th><th>P</th></tr></thead>
+    <tbody><tr>
+        <td>01</td>
+        <td>고객 상담 요약 및 티켓 분류</td>
+        <td>상담원이 완료된 상담 건에 대해 상담 카테고리를 수동으로 지정하고 상담 내용을 요약하여 CRM에 기록하는 작업.</td>
+        <td>LLM이 실시간 상담 대화 맥락을 분석하여 상담 종료 즉시 자동으로 요약본을 생성하고 적절한 태그를 분류하여 CRM에 저장하는 워크플로우 구축.</td>
+        <td>상담 후처리 시간(ACW)을 50% 이상 단축하여 상담원의 업무 생산성 대폭 향상.</td>
+        <td><span class="priority high">High</span></td>
+      </tr>
+<tr>
+        <td>02</td>
+        <td>CRM 개인화 마케팅 메시지 생성</td>
+        <td>마케터가 타겟 고객 세그먼트별로 발송할 푸시 메시지나 알림톡 문구를 직접 작성하고 A/B 테스트 안을 기획하는 업무.</td>
+        <td>고객의 구매 이력, 장바구니 데이터, 이전 상담 이력을 기반으로 LLM이 개인화된 맞춤형 마케팅 카피와 제안 문구를 자동으로 생성 및 발송 예약.</td>
+        <td>마케팅 캠페인 기획 시간을 80% 절감하고, 초개인화 메시지를 통한 구매 전환율(CVR) 15% 이상 상승 기대.</td>
+        <td><span class="priority high">High</span></td>
+      </tr>
+<tr>
+        <td>03</td>
+        <td>자주 묻는 질문(FAQ) 기반 AI 답변 초안 작성</td>
+        <td>복잡한 배송, 환불 규정 등에 대해 상담원이 내부 가이드를 찾아보며 답변을 직접 타이핑하여 고객에게 전송하는 업무.</td>
+        <td>고객의 질문이 인입되면 내부 지식베이스(KB)를 RAG(검색증강생성) 기술로 탐색하여 LLM이 즉시 최적의 답변 초안을 상담원 화면에 제시.</td>
+        <td>평균 답변 시간(ART)을 40% 단축하고, 상담 답변의 일관성과 정확도를 크게 향상.</td>
+        <td><span class="priority high">High</span></td>
+      </tr></tbody>
+  </table>
+  <h2><span class="num">04</span>So What — 다음 행동</h2>
+  <div class="next-action">
+    <div class="label">RECOMMENDED NEXT</div>
+    <p>채널톡의 AI 에이전트 '알프'의 성능을 고도화하기 위해, 고객사의 내부 노션(Notion)이나 구글 드라이브 등 다양한 지식 저장소와의 RAG 연동을 강화하는 API 생태계를 구축해야 합니다.</p>
+  </div>
+  <div class="sources">
+    <div class="sources-label">Sources</div>
+    <ol><li><a href="https://channel.io">https://channel.io</a></li>
+<li><a href="https://www.venturesquare.net">https://www.venturesquare.net</a></li>
+<li><a href="https://www.bloter.net">https://www.bloter.net</a></li></ol>
+  </div>
+  <div class="colophon">
+    <div>n8n // research-brief v1.2</div>
+    <div>For internal review only</div>
+  </div>
+</div>
+</body>
+</html>
