@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alphabet Inc. (Google) — Research Note</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500&family=Pretendard+Variable&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0a0a0a;--paper:#fafaf7;--muted:#6b6b66;--line:#1a1a1a;--line-soft:#d8d6cf;--accent:#b8451f;}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:'Pretendard Variable',Georgia,serif;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+.page{max-width:720px;margin:0 auto;padding:64px 32px 120px;}
+.masthead{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:48px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);}
+.masthead .left{font-weight:500;color:var(--ink);}
+.kicker{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+h1{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:44px;line-height:1.1;letter-spacing:-0.02em;margin:0 0 20px;}
+.standfirst{font-family:'Fraunces',Georgia,serif;font-size:19px;line-height:1.5;color:var(--muted);margin-bottom:40px;max-width:600px;}
+.byline{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);padding-bottom:32px;margin-bottom:48px;border-bottom:1px solid var(--line-soft);}
+.byline span+span::before{content:" · ";margin:0 4px;}
+.tldr{margin:0 0 56px;padding:24px 28px;border-left:2px solid var(--ink);}
+.tldr-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.tldr p{margin:0 0 8px;font-size:16px;line-height:1.55;}
+.tldr p:last-child{margin-bottom:0;}
+h2{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:26px;letter-spacing:-0.01em;margin:56px 0 20px;padding-top:24px;border-top:1px solid var(--line);}
+h2 .num{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;color:var(--muted);margin-right:12px;vertical-align:4px;}
+p{margin:0 0 16px;}
+.facts{display:grid;grid-template-columns:140px 1fr;gap:4px 32px;margin:32px 0 40px;padding:24px 0;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);font-size:14px;}
+.facts dt{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);padding-top:4px;}
+.facts dd{margin:0;padding-bottom:12px;border-bottom:1px dotted var(--line-soft);}
+.facts dd:last-of-type{border-bottom:none;padding-bottom:0;}
+.competitor-list{margin:0;padding:0;list-style:none;}
+.competitor-list li{padding:20px 0;border-bottom:1px solid var(--line-soft);}
+.competitor-list li:last-child{border-bottom:none;}
+.competitor-list h3{font-family:'Fraunces',Georgia,serif;font-size:18px;font-weight:600;margin:0 0 6px;}
+.competitor-list h3 .url{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);font-weight:400;margin-left:8px;text-decoration:none;}
+.competitor-list .pos{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;margin-bottom:8px;}
+.competitor-list p{font-size:15px;margin:0;}
+table.opportunities{width:100%;border-collapse:collapse;margin:24px 0 40px;font-size:14px;}
+.opportunities th{text-align:left;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);padding:10px 12px 10px 0;border-bottom:1px solid var(--line);}
+.opportunities td{padding:16px 12px 16px 0;border-bottom:1px solid var(--line-soft);vertical-align:top;line-height:1.5;}
+.opportunities td:first-child{font-family:'JetBrains Mono',monospace;color:var(--muted);font-size:12px;width:28px;}
+.priority{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.08em;padding:2px 7px;text-transform:uppercase;border:1px solid var(--ink);}
+.priority.high{background:var(--ink);color:var(--paper);}
+.priority.med{background:transparent;color:var(--ink);}
+.priority.low{background:transparent;color:var(--muted);border-color:var(--line-soft);}
+.next-action{margin:32px 0 48px;padding:28px 32px;background:var(--ink);color:var(--paper);}
+.next-action .label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#999;margin-bottom:10px;}
+.next-action p{font-family:'Fraunces',Georgia,serif;font-size:18px;line-height:1.5;margin:0;}
+.sources{margin-top:56px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);}
+.sources-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);margin-bottom:12px;}
+.sources ol{padding-left:20px;margin:0;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.8;}
+.sources ol a{color:var(--accent);text-decoration:none;word-break:break-all;}
+.colophon{margin-top:80px;padding-top:24px;border-top:1px solid var(--line-soft);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;display:flex;justify-content:space-between;}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="masthead">
+    <div class="left">RESEARCH NOTE / 글로벌 빅테크 및 AI 서비스</div>
+    <div class="right">VOL.175 · 2026-05-21</div>
+  </div>
+  <div class="kicker">company · 1-page brief</div>
+  <h1>Alphabet Inc. (Google)</h1>
+  <p class="standfirst">구글은 검색 광고 중심의 비즈니스 모델에서 벗어나 생성형 AI 기반의 어시스턴트 생태계로의 전환을 성공시키느냐에 생존이 달려 있습니다.</p>
+  <div class="byline">
+    <span>Compiled by n8n research workflow</span>
+    <span>3 sources</span>
+    <span>~3 min read</span>
+  </div>
+  <div class="tldr">
+    <div class="tldr-label">TL;DR</div>
+    <p>AI 검색 도입을 통한 기존 검색 광고 모델의 자기잠식 방어가 핵심 과제입니다.</p>
+    <p>반독점 규제 리스크로 인해 애플 등 주요 제조사와의 기본 검색엔진 파트너십 유지가 불투명해졌습니다.</p>
+    <p>유튜브의 숏폼 강화와 클라우드 부문의 AI 인프라 매출 성장이 새로운 캐시카우로 부상하고 있습니다.</p>
+  </div>
+  <h2><span class="num">01</span>회사 개요</h2>
+  <p>구글은 전 세계 검색 시장의 압도적 점유율을 바탕으로 광고, 클라우드, 하드웨어 비즈니스를 영위하는 글로벌 빅테크 기업입니다. 최근에는 자체 거대언어모델 Gemini를 중심으로 서비스 전반에 AI 기술을 통합하는 데 주력하고 있습니다.</p>
+  <dl class="facts">
+    <dt>주요 고객</dt><dd>전 세계 인터넷 사용자, 디지털 광고주, 그리고 엔터프라이즈 클라우드 고객</dd>
+    <dt>비즈니스 모델</dt><dd>검색 및 유튜브 광고 매출, 구글 클라우드 플랫폼(GCP) 구독료, 그리고 구글 플레이스토어 수수료</dd>
+    <dt>최근 이슈</dt><dd>미국 법무부(DOJ)의 반독점 소송 패소 판결 및 기업 분할 가능성 제기</dd>
+  </dl>
+  <h2><span class="num">02</span>경쟁 지형</h2>
+  <p>구글의 경쟁 지형은 단순한 검색 엔진을 넘어 사용자의 주의집중과 체류 시간을 점유하려는 플랫폼 간의 전쟁으로 재정의됩니다.</p>
+  <ol class="competitor-list">
+    <li>
+        <h3>OpenAI <a href="https://openai.com" class="url">↗ openai.com</a></h3>
+        <div class="pos">포지셔닝 — 대화형 AI 및 즉각적인 정보 탐색 플랫폼</div>
+        <p>링크 목록을 나열하는 검색 대신 사용자가 원하는 정답을 즉시 요약 및 생성하여 탐색 시간을 극적으로 단축시킵니다.</p>
+      </li>
+<li>
+        <h3>ByteDance (TikTok) <a href="https://www.tiktok.com" class="url">↗ www.tiktok.com</a></h3>
+        <div class="pos">포지셔닝 — 숏폼 비디오 기반의 엔터테인먼트 및 정보 검색 플랫폼</div>
+        <p>Z세대의 검색 및 여가 시간을 숏폼 알고리즘으로 장악하며 유튜브와 구글 검색의 체류 시간을 직접적으로 빼앗아 갑니다.</p>
+      </li>
+<li>
+        <h3>Meta Platforms <a href="https://www.meta.com" class="url">↗ www.meta.com</a></h3>
+        <div class="pos">포지셔닝 — 소셜 미디어 기반의 커뮤니티 및 타겟 광고 플랫폼</div>
+        <p>사용자 간의 네트워크 효과와 고도화된 개인 맞춤형 피드를 통해 하루 평균 수억 명의 체류 시간을 독점하며 광고 매출을 흡수합니다.</p>
+      </li>
+  </ol>
+  <h2><span class="num">03</span>자동화 기회</h2>
+  <p>구글은 방대한 내부 데이터와 인프라를 활용하여 운영 효율성을 극대화할 수 있는 자동화 기회를 보유하고 있습니다.</p>
+  <table class="opportunities">
+    <thead><tr><th>#</th><th>영역</th><th>현재 반복 업무</th><th>자동화 가설</th><th>기대 효과</th><th>P</th></tr></thead>
+    <tbody><tr>
+        <td>01</td>
+        <td>광고 캠페인 생성 및 최적화</td>
+        <td>마케터들이 수동으로 광고 카피를 작성하고 이미지 에셋을 조합하여 A/B 테스트를 수행하는 업무</td>
+        <td>Gemini API를 활용해 광고주의 웹사이트를 분석한 후 타겟별 맞춤형 광고 카피와 이미지 에셋을 실시간 자동 생성 및 입찰 최적화 수행</td>
+        <td>광고 캠페인 셋업 시간 80% 단축 및 광고 클릭률(CTR) 평균 15% 향상</td>
+        <td><span class="priority high">High</span></td>
+      </tr>
+<tr>
+        <td>02</td>
+        <td>유튜브 다국어 더빙 및 자막 생성</td>
+        <td>크리에이터들이 글로벌 시청자를 타겟팅하기 위해 번역가와 성우를 고용하여 다국어 음성 및 자막을 제작하는 업무</td>
+        <td>구글의 음성 합성(TTS) 및 번역 기술을 결합하여 크리에이터의 원래 목소리 톤을 유지한 채 다국어 더빙 음성을 자동 생성</td>
+        <td>글로벌 콘텐츠 현지화 비용 95% 절감 및 다국어 시청 시간 30% 증가</td>
+        <td><span class="priority high">High</span></td>
+      </tr>
+<tr>
+        <td>03</td>
+        <td>구글 클라우드 고객 기술 지원</td>
+        <td>엔지니어들이 고객사의 클라우드 아키텍처 오류 로그를 분석하고 해결 가이드를 수동으로 작성하여 답변하는 업무</td>
+        <td>GCP 로그 분석 툴과 LLM을 연동하여 시스템 장애 발생 시 원인을 자동 진단하고 아키텍처 개선 가이드를 즉시 생성하여 제공</td>
+        <td>고객 문의 해결 시간(MTTR) 50% 단축 및 1차 고객 만족도 향상</td>
+        <td><span class="priority medium">Med</span></td>
+      </tr></tbody>
+  </table>
+  <h2><span class="num">04</span>So What — 다음 행동</h2>
+  <div class="next-action">
+    <div class="label">RECOMMENDED NEXT</div>
+    <p>구글은 반독점 규제 리스크에 대비해 검색 외 매출 다각화를 서둘러야 하며, Gemini를 안드로이드 OS 생태계에 깊숙이 통합하여 온디바이스 AI 시장의 주도권을 선점해야 합니다.</p>
+  </div>
+  <div class="sources">
+    <div class="sources-label">Sources</div>
+    <ol><li><a href="https://abc.xyz">https://abc.xyz</a></li>
+<li><a href="https://blog.google">https://blog.google</a></li>
+<li><a href="https://www.justice.gov">https://www.justice.gov</a></li></ol>
+  </div>
+  <div class="colophon">
+    <div>n8n // research-brief v1.2</div>
+    <div>For internal review only</div>
+  </div>
+</div>
+</body>
+</html>
