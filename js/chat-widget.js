@@ -291,16 +291,11 @@
         .n8n-chat-widget .chat-faq-container {
             padding: 10px 16px;
             display: flex;
-            gap: 8px;
-            overflow-x: auto;
+            flex-wrap: wrap;
+            gap: 6px 8px;
             background: #f8fafc;
             border-top: 1px solid rgba(92, 107, 192, 0.08);
             border-bottom: 1px solid rgba(92, 107, 192, 0.05);
-            scrollbar-width: none; /* Firefox */
-        }
-
-        .n8n-chat-widget .chat-faq-container::-webkit-scrollbar {
-            display: none; /* Safari and Chrome */
         }
 
         .n8n-chat-widget .faq-btn {
@@ -323,6 +318,28 @@
             border-color: var(--chat--color-primary);
             color: var(--chat--color-primary);
             transform: translateY(-1px);
+        }
+
+        @media (max-width: 450px) {
+            .n8n-chat-widget .chat-container {
+                width: calc(100% - 32px);
+                height: calc(100% - 110px);
+                bottom: 85px;
+            }
+            .n8n-chat-widget .chat-container:not(.position-left) {
+                right: 16px;
+            }
+            .n8n-chat-widget .chat-container.position-left {
+                left: 16px;
+            }
+            .n8n-chat-widget .chat-toggle:not(.position-left) {
+                right: 16px;
+                bottom: 16px;
+            }
+            .n8n-chat-widget .chat-toggle.position-left {
+                left: 16px;
+                bottom: 16px;
+            }
         }
     `;
 
