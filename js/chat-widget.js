@@ -269,21 +269,60 @@
         }
 
         .n8n-chat-widget .chat-footer {
-            padding: 6px 12px;
+            padding: 8px;
             text-align: center;
-            background: white;
-            border-top: 1px solid rgba(92, 107, 192, 0.05);
+            background: var(--chat--color-background);
+            border-top: 1px solid rgba(133, 79, 255, 0.1);
         }
 
         .n8n-chat-widget .chat-footer a {
-            color: #94a3b8;
+            color: var(--chat--color-primary);
             text-decoration: none;
-            font-size: 11px;
-            transition: color 0.2s;
+            font-size: 12px;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+            font-family: inherit;
         }
 
         .n8n-chat-widget .chat-footer a:hover {
+            opacity: 1;
+        }
+
+        .n8n-chat-widget .chat-faq-container {
+            padding: 10px 16px;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            background: #f8fafc;
+            border-top: 1px solid rgba(92, 107, 192, 0.08);
+            border-bottom: 1px solid rgba(92, 107, 192, 0.05);
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .n8n-chat-widget .chat-faq-container::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+        }
+
+        .n8n-chat-widget .faq-btn {
+            background: white;
+            border: 1px solid rgba(92, 107, 192, 0.15);
+            border-radius: 16px;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #475569;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+            font-family: inherit;
+        }
+
+        .n8n-chat-widget .faq-btn:hover {
+            background: #e0e7ff;
+            border-color: var(--chat--color-primary);
             color: var(--chat--color-primary);
+            transform: translateY(-1px);
         }
     `;
 
@@ -361,6 +400,13 @@
             <div class="chat-messages">
                 <!-- Welcome Message is added dynamically -->
             </div>
+            <div class="chat-faq-container">
+                <button class="faq-btn" data-faq="tech">🛠️ 기술 스택</button>
+                <button class="faq-btn" data-faq="experience">💼 주요 경력</button>
+                <button class="faq-btn" data-faq="projects">📁 주요 프로젝트</button>
+                <button class="faq-btn" data-faq="strengths">💡 핵심 강점</button>
+                <button class="faq-btn" data-faq="contact">📞 연락처 & 링크</button>
+            </div>
             <div class="chat-input">
                 <textarea placeholder="메시지를 입력하세요..." rows="1"></textarea>
                 <button type="submit" title="보내기">
@@ -409,6 +455,126 @@
         this.style.height = 'auto';
         this.style.height = (this.scrollHeight - 4) + 'px';
     });
+
+    // Helper to format bot message text (handles bold, links, lists, and newlines)
+    function formatMessageText(text) {
+        if (!text) return '';
+        // Escape HTML to prevent XSS
+        let html = text
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+        
+        // Bold: **text**
+        html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        
+        // Link: [text](url)
+        html = html.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" style="color: var(--chat--color-primary); text-decoration: underline; font-weight: 500;">$1</a>');
+        
+        // Bullet points: - item (matching at start of string or after a newline with optional spaces)
+        html = html.replace(/(?:^|\n)(\s*)-\s+(.*?)(?=$|\n)/g, function(match, spaces, p1) {
+            const prefix = match.startsWith('\n') ? '\n' : '';
+            const indent = spaces ? '&nbsp;&nbsp;&nbsp;&nbsp;' : '';
+            return prefix + indent + '• ' + p1;
+        });
+        
+        // Line breaks
+        html = html.replace(/\n/g, '<br>');
+        
+        return html;
+    }
+
+    const faqData = {
+        tech: {
+            question: "기술 스택은 어떻게 되시나요?",
+            answer: "**🛠️ 기술 스택 (Tech Stack)**\n\n" +
+                    "- **언어**: 파이썬 (Python)\n" +
+                    "- **라이브러리**: Pandas (판다스), Matplotlib, Seaborn\n" +
+                    "- **도구**: Tableau (태블로), Google Colab, Git/GitHub, VS Code\n\n" +
+                    "데이터 가공 및 전처리부터 인터랙티브한 시각화 대시보드 구축까지 가능한 기술 역량을 가지고 있습니다."
+        },
+        experience: {
+            question: "주요 경력에 대해 알려주세요.",
+            answer: "**💼 주요 경력 (Experience)**\n\n" +
+                    "- **AX 융합 교육 과정 이수** (2026 ~ 현재)\n" +
+                    "  - 데이터 분석 및 생성형 AI 비즈니스 응용 교육 과정 참가\n" +
+                    "  - 주요 IT 기업(당근, 채널코퍼레이션, 무신사 등)의 비즈니스 모델 분석 및 자동화 제안서 작성\n" +
+                    "  - n8n, LLM을 활용한 업무 자동화 워크플로우 설계 및 구현\n" +
+                    "- **데이터 분석 및 시각화 프로젝트 경험**\n" +
+                    "  - 소셜 마케팅 성과 분석 및 소비자 소비 성향 트렌드 데이터 분석 진행"
+        },
+        projects: {
+            question: "진행했던 주요 프로젝트를 보여주세요.",
+            answer: "**📁 주요 프로젝트 (Projects)**\n\n" +
+                    "1. **인스타그램 인플루언서 광고 효율 데이터 분석**\n" +
+                    "- **내용**: 인플루언서 광고 성과 데이터를 수집 및 분석하여 광고 효율을 분석한 프로젝트입니다.\n" +
+                    "- **바로가기**: [인스타그램 프로젝트 포스트](post.html?post=project-01-instagram) / [GitHub 저장소](https://github.com/NR128/project_01_instagram_influencer_analysis.git)\n\n" +
+                    "2. **소비자 쇼핑 트렌드 분석 (Consumer Shopping Trends)**\n" +
+                    "- **내용**: 연령 및 소득 수준별 소비 패턴을 다각도로 분석하여 맞춤형 마케팅 전략과 비즈니스 인사이트를 도출한 프로젝트입니다.\n" +
+                    "- **바로가기**: [쇼핑 트렌드 분석 포스트](post.html?post=consumer-shopping-trends)"
+        },
+        strengths: {
+            question: "핵심 강점은 무엇인가요?",
+            answer: "**💡 핵심 강점 (Key Strengths)**\n\n" +
+                    "- **데이터 기반 비즈니스 인사이트**: 단순 데이터 분석을 넘어 비즈니스 지표 개선을 위한 실질적인 액션 아이템을 도출합니다.\n" +
+                    "- **비즈니스 시각화 (Tableau)**: 복잡한 데이터 흐름을 대시보드로 시각화하여 설득력 있는 의사결정을 지원합니다.\n" +
+                    "- **업무 자동화 및 RAG 활용**: n8n 등 자동화 도구와 LLM/RAG 패턴을 학습하여 업무 효율을 극대화하는 방안을 모색합니다."
+        },
+        contact: {
+            question: "연락처 및 관련 링크를 알려주세요.",
+            answer: "**📞 연락처 & 링크 (Contact & Links)**\n\n" +
+                    "- **GitHub**: [NR128 GitHub Profile](https://github.com/NR128)\n" +
+                    "- **홈페이지**: [NR's Tech Space 홈으로 이동](index.html)\n\n" +
+                    "궁금한 점이 있으시다면 언제든 편하게 연락해 주세요! 😊"
+        }
+    };
+
+    // Select FAQ buttons and bind click event
+    const faqButtons = chatContainer.querySelectorAll('.faq-btn');
+    faqButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const faqKey = button.getAttribute('data-faq');
+            if (faqData[faqKey]) {
+                handleFAQClick(faqKey);
+            }
+        });
+    });
+
+    async function handleFAQClick(faqKey) {
+        const item = faqData[faqKey];
+        if (!item) return;
+
+        // 1. Display user question
+        const userMessageDiv = document.createElement('div');
+        userMessageDiv.className = 'chat-message user';
+        userMessageDiv.textContent = item.question;
+        messagesContainer.appendChild(userMessageDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        // 2. Show typing indicator
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'chat-message bot typing';
+        typingDiv.innerHTML = '<span></span><span></span><span></span>';
+        messagesContainer.appendChild(typingDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        // Disable FAQ buttons while responding
+        faqButtons.forEach(btn => btn.style.pointerEvents = 'none');
+
+        // 3. Simulate delayed response (600ms)
+        setTimeout(() => {
+            typingDiv.remove();
+
+            const botMessageDiv = document.createElement('div');
+            botMessageDiv.className = 'chat-message bot';
+            botMessageDiv.innerHTML = formatMessageText(item.answer);
+            messagesContainer.appendChild(botMessageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            // Re-enable FAQ buttons
+            faqButtons.forEach(btn => btn.style.pointerEvents = 'auto');
+        }, 600);
+    }
 
     async function sendMessage(message) {
         // Render user message
@@ -466,7 +632,7 @@
                 botText = data || '응답을 받지 못했습니다.';
             }
 
-            botMessageDiv.textContent = botText;
+            botMessageDiv.innerHTML = formatMessageText(botText);
             messagesContainer.appendChild(botMessageDiv);
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         } catch (error) {
